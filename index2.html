@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flores</title>
+</head>
+<style>
+    *,
+*::after,
+*::before {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --dark-color: #000;
+    --speed-leaf: 2s;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--dark-color);
+    overflow: hidden;
+}
+
+.night {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    filter: blur(0.1vmin);
+    background: linear-gradient(to bottom, #000, #001a33);
+}
+
+.deep-space {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    transform-style: preserve-3d;
+    perspective: 2000px;
+}
+
+.star-field {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    animation: starFloat 120s linear infinite;
+}
+
+.star {
+    position: absolute;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+    animation: twinkle 3s ease-in-out infinite, starDrift 20s ease-in-out infinite;
+}
+
+.nebula {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.3;
+    animation: nebulaPulse 15s ease-in-out infinite;
+}
+
+.nebula-1 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(138, 43, 226, 0.6), transparent);
+    top: 10%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.nebula-2 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0, 191, 255, 0.5), transparent);
+    top: 40px;
+    right: 15px;
+    animation-delay: 5s;
+}
+
+.nebula-3 {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(255, 20, 147, 0.4), transparent);
+    bottom: 20%;
+    left: 10%;
+    animation-delay: 10s;
+}
+
+.galaxy {
+    position: absolute;
+    width: 600px;
+    height: 200px;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%) rotateZ(-20deg);
+    background: radial-gradient(ellipse, rgba(255, 255, 255, 0.1), transparent);
+    filter: blur(3px);
+    opacity: 0.4;
+    animation: galaxyRotate 200s linear infinite;
+}
+
+@keyframes starFloat {
+    0% {
+        transform: translateZ(0px);
+    }
+    100% {
+        transform: translateZ(100PX);
+    }
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+@keyframes starDrift {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+    25% {
+        transform: translate(15px, -10px);
+    }
+    50%{
+        transform: translate(-10px, 15px);
+    }
+    0%, 100% {
+        transform: translate(10px, 10px);
+    }
+}
+
+@keyframes nebulaPulse {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.1);
+    }
+}
+
+@keyframes galaxyRotate {
+    0% {
+        transform: translateX(-50%) rotateZ(-20deg);
+    }
+    100% {
+        transform: translateX(-50%) rotateZ(-340deg);
+    }
+}
+
+.not-loaded * {
+    animation-play-state: paused !important;
+}
+
+/* class 2 */
+
+.shooting-stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.shooting-star {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.8);
+    opacity: 0;
+    animation: shootingStar 3s linear infinite;
+}
+
+.shooting-star::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(50%);
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%,rgba(255, 255, 255, 1) 100%);
+    animation: shootingStarTail 3s linear infinite;
+}
+
+.shooting-star:nth-child(1) {
+    top: 5%;
+    left: -10%;
+    animation-delay: 0s;
+    animation-duration: 2.5s;
+}
+
+.shooting-star:nth-child(2) {
+    top: 15%;
+    left: -10%;
+    animation-delay: 2s;
+    animation-duration: 3s;
+}
+
+.shooting-star:nth-child(3) {
+    top: 25%;
+    left: -10%;
+    animation-delay: 4s;
+    animation-duration: 2.8s;
+}
+.shooting-star:nth-child(4) {
+    top: 0%;
+    left: -10%;
+    animation-delay: 6s;
+    animation-duration: 3.2s;
+}
+.shooting-star:nth-child(5) {
+    top: 35%;
+    left: -10%;
+    animation-delay: 8s;
+    animation-duration: 2.7s;
+}
+
+.shooting-star:nth-child(6) {
+    top: 8%;
+    left: -10%;
+    animation-delay: 10s;
+    animation-duration: 3.1s;
+}
+.shooting-star:nth-child(7) {
+    top: 45%;
+    left: -10%;
+    animation-delay: 12s;
+    animation-duration: 2.9s;
+}
+.shooting-star:nth-child(8) {
+    top: 3%;
+    left: -10%;
+    animation-delay: 14s;
+    animation-duration: 3.3s;
+}
+
+@keyframes shootingStar {
+    0% {
+        opacity: 0;
+        transform: translateX(0) translateY(0) rotate(45deg);
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(120vw) translateY(50vh) rotate(10deg);
+    }
+}
+
+@keyframes shootingStarTail {
+    0% {
+        width: 0;
+    }
+    30% {
+        width: 100px;
+    }
+    100% {
+        width: 0;
+    }
+}
+</style>
+<body class="not-loaded">
+
+    <div class="night"></div>
+
+    <div class="deep-space">
+
+        <div class="nebula nebula-1"></div>
+
+        <div class="nebula nebula-2"></div>
+
+        <div class="nebula nebula-3"></div>
+
+        <div class="galaxy"></div>
+
+        <div class="star-field" id="starField"></div>
+
+    </div>
+
+    <div class="shooting-stars">
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+    </div>
+
+    <script>
+        function createStar() {
+    const starField = document.getElementById('starField');
+    const starCount = 300;
+    for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div')
+        star.className = 'star'
+        const x = Math.random() * 100; 
+        const y = Math.random() * 100; 
+        const size = Math.random() * 3 + 1;
+        const delay = Math.random() * 5;
+        const driftDelay = Math.random() * 20;
+        star.style.left = x + '%';
+        star.style.top = y + '%';
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+        star.style.animationDelay = `${delay}s, ${driftDelay}s`
+        starField.appendChild(star)
+    }
+}
+
+onload = () => {
+    setTimeout(() => {
+        document.body.classList.remove('not-loaded')
+        createStar()
+    }, 1000) 
+}
+    </script>
+</body>
+</html>
